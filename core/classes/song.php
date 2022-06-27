@@ -7,7 +7,6 @@ class Song
 	public $title;
 	public $content;
 	public $artist_id;
-	public $created_at;
 
 	/**
 	 * Constructor
@@ -49,25 +48,32 @@ class Song
 		return $this->db->query($sql, $params, Db::RESULT_SINGLE);
 	}
 
-	public function save() {
+	public function create() {
 		$params = array(
 			"title" => array($this->title, PDO::PARAM_STR),
 			"content" => array($this->content, PDO::PARAM_STR),
 			"artist_id" => array($this->artist_id, PDO::PARAM_INT)
 		);
+		$sql = "INSERT INTO song(title, content, artist_id) 
+				VALUES(:title, :content, :artist_id)";
+		if($this->db->query($sql, $params)) {
+			return $this->db->lastInsertId();
+		}
+	}	
 
-		if($this->id) {
-			$params["id"] = array($this->id, PDO::PARAM_INT);
-			$sql = "UPDATE song 
-					SET title = :title, content = :content, artist_id = :artist_id 
-					WHERE id = :id";
-			return $this->db->query($sql, $params);
-		} else {
-			$sql = "INSERT INTO song(title, content, artist_id) 
-					VALUES(:title, :content, :artist_id)";
-			if($this->db->query($sql, $params)) {
-				return $this->db->lastInsertId();
-			}		
+	public function update() {
+		$params = array(
+			"id" => array($this->id, PDO::PARAM_INT),
+			"title" => array($this->title, PDO::PARAM_STR),
+			"content" => array($this->content, PDO::PARAM_STR),
+			"artist_id" => array($this->artist_id, PDO::PARAM_INT)
+		);
+
+		$sql = "UPDATE song 
+				SET title = :title, content = :content, artist_id = :artist_id 
+				WHERE id = :id";
+		if($this->db->query($sql, $params)) {
+			return $this->id;
 		}
 	}
 

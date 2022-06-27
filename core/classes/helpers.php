@@ -20,4 +20,9 @@ class Helpers {
 		header('Content-Type: application/json; charset=utf-8');
 		return json_encode($json);
 	}
+
+	static public function createIcon($href, $text, $title) {
+		return "<a href=\"" . $href . "\" title=\"".$title."\">$text</a>";
+
+	}
 }
