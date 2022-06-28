@@ -13,9 +13,8 @@ class PresentForm {
 
 	/**
 	 * Constructor
-	 * @param array $fields Array med felter
-	 * @param array $data Array af data - Optional
-	 * @return string HTML string
+	 * @param Array $fields Array med felter
+	 * @param Array $data Array af data - Optional
 	 */
 	public function __construct($fields, $data = null) {
 		$this->method = 'POST';
@@ -29,6 +28,7 @@ class PresentForm {
 	 * Presenter Create method
 	 * Bygger en formular ud fra array af felter
 	 * Medtager og viser data hvis der er nogle
+	 * @return String HTML string
 	 */
 	public function create() {
 		// Starter html string med form tag

@@ -11,9 +11,8 @@ class PresentDetails {
 
 	/**
 	 * Constructor
-	 * @param array $fields Felter der skal medtages
-	 * @param array $data Data Objekt
-	 * @return string HTML string
+	 * @param Array $fields Felter der skal medtages
+	 * @param Array $data Data Objekt
 	 */
 	public function __construct($fields, $data) {
 		$this->fields = $fields;
@@ -24,6 +23,7 @@ class PresentDetails {
 	/**
 	 * Presenter Create method
 	 * Bygger en tabel ud fra array af felter og data
+	 * @return String HTML string
 	 */
 	public function create() {
 		$this->html = "<table border=\"1\">\n<tr>\n";

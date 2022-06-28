@@ -1,4 +1,7 @@
 <?php
+/**
+ * Routes for Song Admin Panel
+ */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/assets/incl/init.php';
 
 // Route til liste

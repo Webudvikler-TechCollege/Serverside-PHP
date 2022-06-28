@@ -11,9 +11,8 @@ class PresentList {
 
 	/**
 	 * Constructor
-	 * @param array $fields Felter der skal medtages
-	 * @param array $data Data Records
-	 * @return string HTML string
+	 * @param Array $fields Felter der skal medtages
+	 * @param Array $data Data Records
 	 */	
 	public function __construct($fields, $data) {
 		$this->fields = $fields;
@@ -24,6 +23,7 @@ class PresentList {
 	/**
 	 * Presenter Create method
 	 * Bygger en tabel med liste ud fra array af felter og data
+	 * @return String HTML string
 	 */	
 	public function create() {
 		$this->html = "<table border=\"1\">\n<thead>\n<tr>\n";

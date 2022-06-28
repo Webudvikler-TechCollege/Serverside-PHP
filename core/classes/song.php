@@ -19,6 +19,7 @@ class Song
 
 	/**
 	 * Metode til at hente lister med
+	 * @return Array
 	 */
 	public function list()
 	{
@@ -32,7 +33,8 @@ class Song
 
 	/**
 	 * Metode til at hente detaljer med
-	 * @param id 
+	 * @param Integer id Object Identifier
+	 * @return Array
 	 */
 	public function details($id)
 	{
@@ -50,6 +52,7 @@ class Song
 
 	/**
 	 * Metode til at at oprette med
+	 * @return Integer
 	 */
 	public function create() {
 		$params = array(
@@ -66,6 +69,7 @@ class Song
 
 	/**
 	 * Metode til at at opdatere med
+	 * @return Integer
 	 */	
 	public function update() {
 		$params = array(
@@ -85,7 +89,8 @@ class Song
 
 	/**
 	 * Metode til at slette en record med
-	 * @param id 
+	 * @param int id Object Identifier
+	 * @return Boolean
 	 */
 	public function delete($id)
 	{
