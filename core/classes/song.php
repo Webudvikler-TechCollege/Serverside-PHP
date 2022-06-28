@@ -48,6 +48,9 @@ class Song
 		return $this->db->query($sql, $params, Db::RESULT_SINGLE);
 	}
 
+	/**
+	 * Metode til at at oprette med
+	 */
 	public function create() {
 		$params = array(
 			"title" => array($this->title, PDO::PARAM_STR),
@@ -61,6 +64,9 @@ class Song
 		}
 	}	
 
+	/**
+	 * Metode til at at opdatere med
+	 */	
 	public function update() {
 		$params = array(
 			"id" => array($this->id, PDO::PARAM_INT),
