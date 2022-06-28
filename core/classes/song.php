@@ -40,7 +40,7 @@ class Song
 			"id" => array($id, PDO::PARAM_INT)
 		);
 
-		$sql = "SELECT s.id, s.title, s.content, a.name 
+		$sql = "SELECT s.id, s.title, s.content, s.artist_id, a.name 
 				FROM song s 
 				JOIN artist a 
 				ON s.artist_id = a.id 
