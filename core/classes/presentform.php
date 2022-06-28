@@ -1,4 +1,9 @@
 <?php 
+/**
+ * Form Presenter
+ * Bygger og returnerer html til formular 
+ * input felter og submit knap
+ */
 class PresentForm {
 	public $fields; // Array til felter
 	public $data; 	// Array til data
@@ -8,8 +13,9 @@ class PresentForm {
 
 	/**
 	 * Constructor
-	 * @param $fields - Array med felter
-	 * @param $data - Array af data - Optional
+	 * @param array $fields Array med felter
+	 * @param array $data Array af data - Optional
+	 * @return string HTML string
 	 */
 	public function __construct($fields, $data = null) {
 		$this->method = 'POST';
