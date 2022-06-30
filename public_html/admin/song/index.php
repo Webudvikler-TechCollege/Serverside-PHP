@@ -28,12 +28,13 @@ Route::add('/admin/song/', function() {
 	// Kalder instans af list presenter
 	$presenter = new PresentList($fields,$list);
 
-	$navbuttons = array(
+	// Sætter array med links til navigation
+	$navlinks = array(
 		presentHeader::setLink("/admin/song/add", "Opret ny")
 	);
 
-	// Output med header og footer
-	presentHeader::adminHeader('Sange', 'Oversigt', $navbuttons);
+	// Output med admin header og footer
+	presentHeader::adminHeader('Sange', 'Oversigt', $navlinks);
 	echo $presenter->create();
 	presentHeader::adminFooter();
 });
@@ -54,13 +55,14 @@ Route::add('/admin/song/([0-9]*)', function($id) {
 	// Kalder instans af detail presenter med felter og data
 	$presenter = new PresentDetails($fields, $details);
 	
-	$navbuttons = array(
+	// Sætter array med links til navigation
+	$navlinks = array(
 		presentHeader::setLink("/admin/song/add", "Opret ny"),
 		presentHeader::setLink("/admin/song/", "Oversigt")
 	);
 
-	// Output med header og footer
-	presentHeader::adminHeader('Sange', 'Detaljer', $navbuttons);
+	// Output med admin header og footer
+	presentHeader::adminHeader('Sange', 'Detaljer', $navlinks);
 	echo $presenter->create();
 	presentHeader::adminFooter();
 });
@@ -83,12 +85,13 @@ Route::add('/admin/song/add', function() {
 	$presenter = new PresentForm($fields);
 	$presenter->action = "/admin/song/create";
 
-	$navbuttons = array(
+	// Sætter array med links til navigation
+	$navlinks = array(
 		presentHeader::setLink("/admin/song/", "Oversigt")
 	);	
 
-	// Output med header og footer
-	presentHeader::adminHeader('Sange', 'OPret ny sang', $navbuttons);
+	// Output med admin header og footer
+	presentHeader::adminHeader('Sange', 'Opret ny sang', $navlinks);
 	echo $presenter->create();
 	presentHeader::adminFooter();
 });
@@ -127,14 +130,15 @@ Route::add('/admin/song/edit/([0-9]*)', function($id) {
 	$presenter = new PresentForm($fields, $data);
 	$presenter->action = "/admin/song/update";
 
-	$navbuttons = array(
+	// Sætter array med links til navigation
+	$navlinks = array(
 		presentHeader::setLink("/admin/song/", "Oversigt"),
 		presentHeader::setLink("/admin/song/add", "Opret ny"),
 
 	);	
 
-	// Output med header og footer
-	presentHeader::adminHeader('Sange', 'Rediger', $navbuttons);	
+	// Output med admin header og footer
+	presentHeader::adminHeader('Sange', 'Rediger', $navlinks);	
 	echo $presenter->create();
 	presentHeader::adminFooter();
 });
@@ -169,16 +173,18 @@ Route::add('/admin/song/delete/([0-9]*)', function($id) {
 	// Kalder instans af form presenter og sætter form action
 	$presenter = new PresentForm($fields, array("id" => $id));
 	$presenter->action = "/admin/song/dodelete/";
+	// Sætter array med ok knap til form presenter
 	$presenter->buttons = array(
-		"<button type=\"submit\">Slet</button>"
+		presentHeader::setButton('Ok')
 	);
 
-	$navbuttons = array(
+	// Sætter array med links til navigation
+	$navlinks = array(
 		presentHeader::setLink("/admin/song/", "Oversigt")
 	);	
 
-	// Output med header og footer
-	presentHeader::adminHeader('Sange', 'Slet sang', $navbuttons);	
+	// Output med admin header og footer
+	presentHeader::adminHeader('Sange', 'Slet sang', $navlinks);	
 	echo $presenter->create();
 	presentHeader::adminFooter();
 });
@@ -186,6 +192,7 @@ Route::add('/admin/song/delete/([0-9]*)', function($id) {
 // Route til at slette med
 Route::add('/admin/song/dodelete/', function() {
 	$object = new Song;
+	// Skifter til liste route hvis sletning er ok
 	if($object->delete($_POST['id'])) {
 		header('Location: /admin/song/');
 	}

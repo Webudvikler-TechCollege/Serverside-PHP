@@ -80,10 +80,13 @@ class PresentForm {
 		}
 		// Button panel 
 		$this->html .= " <div class=\"buttonpanel\">\n";
+
 		if(!$this->buttons) {
+			// Udskriver standard knapper hvis buttons er tom
 			$this->html .= "  <button type=\"submit\">Gem</button>\n";
 			$this->html .= "  <button type=\"reset\">Nulstil felter</button>\n";	
 		} else {
+			// Udskriver buttons fra array
 			foreach($this->buttons as $button) {
 				$this->html .= $button;
 			}

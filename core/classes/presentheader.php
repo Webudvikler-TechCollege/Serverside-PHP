@@ -5,19 +5,18 @@ class presentHeader {
 	public $subtitle;
 
 	public function __construct() {
-
+		require_once DOCROOT . "/admin/assets/incl/header.php";
 	}
 
 	static public function adminHeader($title, $subtitle, $navbuttons) {
-		require_once DOCROOT . "/admin/assets/incl/header.php";
-		echo "<h2>" . $title . "</h2>";
-		echo "<h3>" . $subtitle . "</h3>";
+		$html = "<h2>" . $title . "</h2>";
+		$html .= "<h3>" . $subtitle . "</h3>";
 		if(is_array($navbuttons)) {
 			foreach($navbuttons as $button) {
-				echo $button;
+				$html .= $button;
 			}
 		}
-
+		echo $html;
 
 	}
 
@@ -28,5 +27,8 @@ class presentHeader {
 	static public function setLink($href, $text) {
 		return "<a href=\"". $href . "\">".$text."</a>";
 	}
-
+	
+	static public function setButton($text, $type = "submit", $script = null) {
+		return "<button type=\"". $type . "\">".$text."</button>";
+	}
 }
