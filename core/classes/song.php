@@ -47,7 +47,12 @@ class Song
 				JOIN artist a 
 				ON s.artist_id = a.id 
 				WHERE s.id = :id";
-		return $this->db->query($sql, $params, Db::RESULT_SINGLE);
+		$row = $this->db->query($sql, $params, Db::RESULT_SINGLE);
+		$this->id = $row["id"];
+		$this->title = $row["title"];
+		$this->content = $row["content"];
+		$this->artist_id = $row["artist_id"];
+		return $row;
 	}
 
 	/**
@@ -63,7 +68,8 @@ class Song
 		$sql = "INSERT INTO song(title, content, artist_id) 
 				VALUES(:title, :content, :artist_id)";
 		if($this->db->query($sql, $params)) {
-			return $this->db->lastInsertId();
+			$this->id = $this->db->lastInsertId();
+			return $this->id;
 		}
 	}	
 

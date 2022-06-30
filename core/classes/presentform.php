@@ -10,6 +10,7 @@ class PresentForm {
 	public $html;	// HTML string
 	public $method;	// Form method
 	public $action;	// Form action
+	public $buttons; // Array med form Buttons
 
 	/**
 	 * Constructor
@@ -22,6 +23,7 @@ class PresentForm {
 		$this->fields = $fields;
 		$this->data = $data;
 		$this->html = '';
+		$this->buttons = null;
 	}
 
 	/**
@@ -42,7 +44,7 @@ class PresentForm {
 		// key = 
 		foreach($this->fields as $key => $arrFieldValues) {
 			$this->html .= " <div>\n";
-			$this->html .= "  <label for=\"" . $key ."\">" . $arrFieldValues[0] . "</label>\n";
+			$this->html .= $arrFieldValues[1] != "hidden" ? "<label for=\"" . $key ."\">" . $arrFieldValues[0] . "</label>\n" : "";
 			// Sætter var med værdi hvis den eksisterer i data array
 			$dataValue = isset($this->data[$key]) ? $this->data[$key] : ''; 
 
@@ -53,6 +55,9 @@ class PresentForm {
 				case "EMAIL":
 				case "NUMBER":
 				case "PASSWORD":
+					$this->html .= "  <input type=\"".$arrFieldValues[1]."\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"" . $dataValue . "\" />\n";
+					break;
+				case "HIDDEN":
 					$this->html .= "  <input type=\"".$arrFieldValues[1]."\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"" . $dataValue . "\" />\n";
 					break;
 				case "TEXTAREA":
@@ -75,8 +80,14 @@ class PresentForm {
 		}
 		// Button panel 
 		$this->html .= " <div class=\"buttonpanel\">\n";
-		$this->html .= "  <button type=\"submit\">Gem</button>\n";
-		$this->html .= "  <button type=\"reset\">Nulstil felter</button>\n";
+		if(!$this->buttons) {
+			$this->html .= "  <button type=\"submit\">Gem</button>\n";
+			$this->html .= "  <button type=\"reset\">Nulstil felter</button>\n";	
+		} else {
+			foreach($this->buttons as $button) {
+				$this->html .= $button;
+			}
+		}
 		$this->html .= " </div>\n";
 
 		$this->html .= "</form>";

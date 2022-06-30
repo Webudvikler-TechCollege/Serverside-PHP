@@ -21,8 +21,13 @@ class Helpers {
 		return json_encode($json);
 	}
 
-	static public function createIcon($href, $text, $title) {
-		return "<a href=\"" . $href . "\" title=\"".$title."\">$text</a>";
+	static public function createIcon($href, $text, $title, $script = null) {
+		$html = "<a title=\"".$title."\"";
+		
+		$html .= ($script) ? " onClick=\"".$script."\" href=\"javascript:void(0)\" " : " href=\"".$href."\"";
+		
+		$html .= ">$text</a>";
+		return $html;
 
 	}
 }
