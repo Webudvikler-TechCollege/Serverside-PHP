@@ -25,7 +25,7 @@ $arrNavItems = [
 </head>
 <body>
 	<header>
-		<h1>Header</h1>
+		<div id="logo">MyFirstPHPSite</div>
 		<nav>
 			<ul>
 				<?php 
