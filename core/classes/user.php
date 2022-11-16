@@ -4,8 +4,6 @@ class User {
 	public $lastname;
 	public $email;
 
-	public $corepath;
-
 	public function __construct()
 	{
 		var_dump('Class User er kaldt');
