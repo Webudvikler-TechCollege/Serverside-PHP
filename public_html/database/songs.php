@@ -3,25 +3,30 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/assets/incl/init.php');
 
 // Sætter var artist_id fra superglobal $_GET 
-$artist_id = $_GET['artist_id'];
+$artist_id = isset($_GET['artist_id']) && !empty($_GET['artist_id']) 
+				? (int)$_GET['artist_id'] : 0;
 
-// Deklarerer sql var med join til artist tabel
-$sql = "SELECT song.title, artist.name 
-		FROM song 
-		JOIN artist 
-		ON song.artist_id = artist.id 
-		WHERE song.artist_id = :artist_id";
+if($artist_id) {		
+	// Deklarerer sql var med join til artist tabel
+	$sql = "SELECT song.title, artist.name 
+			FROM song 
+			JOIN artist 
+			ON song.artist_id = artist.id 
+			WHERE song.artist_id = :artist_id";
 
-// Kalder prepared statement
-$statement = $db->prepare($sql);
+	// Kalder prepared statement
+	$statement = $db->prepare($sql);
 
-// Binder params til statement
-$statement->bindParam(':artist_id', $artist_id);
+	// Binder params til statement
+	$statement->bindParam(':artist_id', $artist_id);
 
-// Eksekverer SQL statement
-$statement->execute();
+	// Eksekverer SQL statement
+	$statement->execute();
 
-// Kalder fetch på statement objekt
-$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+	// Kalder fetch på statement objekt
+	$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($rows);
+	var_dump($rows);
+} else {
+	echo "Kunne ikke finde noget på det pågældende id.";
+}
