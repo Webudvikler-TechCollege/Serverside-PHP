@@ -47,8 +47,12 @@ Route::add('/api/song/', function() {
 	} else {
 		echo false;
 	}
-
 }, 'put');
+
+Route::add('/api/song/([0-9]*)', function($id) {
+	$song = new Song;
+	echo $song->delete($id);
+}, 'delete');
 
 Route::run('/');
 ?>
