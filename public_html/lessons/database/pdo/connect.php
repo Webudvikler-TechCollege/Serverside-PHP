@@ -1,6 +1,6 @@
 <?php
 /**
- * Eksempel på tilslutning til database med PDO
+ * Eksempel på manuel tilslutning til database med PDO
  */
 $dns = "mysql:host=localhost;dbname=localdb";
 $username = 'root';
