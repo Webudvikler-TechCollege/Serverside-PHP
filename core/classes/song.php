@@ -73,6 +73,7 @@ class Song {
 				content = :content,
 				artist_id = :artist_id 
 				WHERE id = :id";
+
 		return $this->db->query($sql, $params);
 	}
 

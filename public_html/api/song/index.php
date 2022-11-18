@@ -45,7 +45,7 @@ Route::add('/api/song/', function() {
 	if($song->id && $song->title && $song->content && $song->artist_id) {
 		echo $song->update();
 	} else {
-		echo "Kan ikke oprette sangen.";
+		echo false;
 	}
 
 }, 'put');

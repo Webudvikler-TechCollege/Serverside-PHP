@@ -12,6 +12,14 @@ class Tools {
 	static public function jsonParser($json) {
 		header('Content-Type: application/json; charset=utf-8');
 		return json_encode($json);
-	}	
+	}
+	
+	static public function responseArray($status = null, $id = 0) {
+		return array(
+			'status' => $status,
+			'id' => $id
+		);
+
+	}
 }
 ?>
