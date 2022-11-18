@@ -33,12 +33,26 @@ class Song {
 			'id' => array($id, PDO::PARAM_INT)
 		);
 
-		$sql = "SELECT title, content, name, artist_id 
-				FROM song 
-				JOIN artist 
-				ON song.artist_id = artist.id 
-				WHERE song.id = :id";
+		$sql = "SELECT s.title, s.content, a.name, s.artist_id 
+				FROM song s 
+				JOIN artist a 
+				ON s.artist_id = a.id 
+				WHERE s.id = :id";
 		return $this->db->query($sql, $params, Db::RESULT_SINGLE);
+	}
+
+	public function create() {
+		$params = array(
+			'title' => array($this->title, PDO::PARAM_STR),
+			'content' => array($this->content, PDO::PARAM_STR),
+			'artist_id' => array($this->artist_id, PDO::PARAM_INT)
+		);
+
+		$sql = "INSERT INTO song(title, content, artist_id) 
+				VALUES(:title, :content, :artist_id)";
+		$this->db->query($sql, $params);
+		return $this->db->lastInsertId();
+		
 	}
 
 
